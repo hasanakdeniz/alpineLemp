@@ -1,3 +1,3 @@
 FROM alpine:3.22
-RUN apk add --no-cache update nano mysql-client
+RUN apk add update && apk add --no-cache nano mysql-client
 ENTRYPOINT ["mysql"]
