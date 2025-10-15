@@ -1,0 +1,9 @@
+services:
+  alpine:
+    build:
+      context: .
+      dockerfile: alpine.Dockerfile
+    volumes:
+      - alpine:/home/alpine
+volumes:
+  alpine: {}
