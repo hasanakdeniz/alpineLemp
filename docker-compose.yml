@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: alpine.Dockerfile
+    ports:
+      - 80
     tty: true
     volumes:
       - alpine:/home/alpine
