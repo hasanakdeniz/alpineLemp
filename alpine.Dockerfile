@@ -1,2 +1,2 @@
 FROM alpine:latest
-RUN apk update && sh -c
+RUN apk update && /bin/sh -c
