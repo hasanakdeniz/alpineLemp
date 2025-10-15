@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: alpine.Dockerfile
+    tty: true
     volumes:
       - alpine:/home/alpine
 volumes:
