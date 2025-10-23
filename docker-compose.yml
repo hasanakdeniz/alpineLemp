@@ -19,7 +19,7 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine
-    command: bash -c "chown -R www:www /home/alpine/www && /usr/sbin/php-fpm83 -F && /usr/sbin/nginx -g 'daemon off;'"
+    command: bash -c "chown -R www:www /home/alpine/www"
 
 volumes:
   mariadb: {}
