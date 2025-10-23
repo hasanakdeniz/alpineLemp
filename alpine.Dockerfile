@@ -9,10 +9,9 @@ RUN apk update && apk add --no-cache bash nano nginx \
     && chown -R www:www /var/lib/nginx \
     && chown -R www:www /home/alpine/www \
     && echo '<h1>PHP Nginx Calisiyor!</h1><?php phpinfo();' > /home/alpine/www/index.php \
-    # Nginx'i www kullanıcısı altında çalıştırmak için ana konfigürasyonu düzenle
     && sed -i '1iuser www www;' /etc/nginx/nginx.conf \
-    # PHP-FPM'i TCP port 9000'de dinlemesi için ayarla (Nginx'e uygun)
-    && sed -i 's/listen = \/var\/run\/php-fpm.sock/listen = 9000/g' /etc/php8/php-fpm.d/www.conf
+    # PHP-FPM'i TCP port 9000'de dinlemesi için ayarla (Düzeltildi)
+    && sed -i 's#listen = /var/run/php-fpm.sock#listen = 9000#g' /etc/php8/php-fpm.d/www.conf
 
 # PHP destekli Nginx konfigürasyonunu yazar
 RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.php index.html index.htm; location / { try_files $uri $uri/ =404; } location ~ \.php$ { try_files $uri =404; fastcgi_split_path_info ^(.+\.php)(/.+)$; fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
