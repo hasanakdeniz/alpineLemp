@@ -12,5 +12,3 @@ RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli \
 RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.html index.php index.htm; location / { try_files $uri $uri/ =404; }   location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
 
 EXPOSE 80 443
-
-CMD sh -c "php-fpm83 && nginx -g 'daemon off;'"
