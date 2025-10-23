@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache nginx \
+RUN apk update && apk add --no-cache bash nano nginx \
     && rm -f /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www \
     && echo 'merhaba' > /home/alpine/www/index.html
