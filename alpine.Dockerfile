@@ -3,7 +3,6 @@ FROM alpine:latest
 RUN apk update && apk add --no-cache bash nano openrc mariadb-client nginx php php-fpm php-mysqli \
     && adduser -D -g 'www' www \
     && rm -rf /etc/nginx/http.d/default.conf \
-    && rm -rf /home/alpine/www/* \
     && mkdir -p /home/alpine/www \
     && chown -R www:www /var/lib/nginx \
     && chown -R www:www /home/alpine/www \
