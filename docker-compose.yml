@@ -1,4 +1,15 @@
-services:  
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+    volumes:
+      - mariadb:/var/lib/mysql
+      
   alpine:
     build:
       context: .
@@ -10,4 +21,5 @@ services:
       - alpine:/home/alpine
 
 volumes:
+  mariadb: {}
   alpine: {}
