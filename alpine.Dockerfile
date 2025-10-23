@@ -13,8 +13,8 @@ RUN echo 'server { \
     } \
 }' > /etc/nginx/http.d/default.conf
 
-RUN nginx -s reload
-
 EXPOSE 80 443
 
 CMD ["nginx", "-g", "daemon off;"]
+
+RUN nginx -s reload
