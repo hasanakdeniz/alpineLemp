@@ -2,13 +2,13 @@ services:
   mariadb:
     image: mariadb
     restart: always
-  environment:
-    MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
-    MARIADB_USER: ${MARIADB_USER}
-    MARIADB_PASSWORD: ${MARIADB_PASSWORD}
-    MARIADB_DATABASE: ${MARIADB_DATABASE}
-  volumes:
-    - mariadb:/home/mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+    volumes:
+      - mariadb:/home/mariadb
   
   alpine:
     build:
