@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk update && apk add --no-cache bash nano nginx \
-    && adduser -D -g 'www2 www \
+    && adduser -D -g 'www' www \
     && rm -f /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www \
     && chown -R www:www /var/lib/nginx \
