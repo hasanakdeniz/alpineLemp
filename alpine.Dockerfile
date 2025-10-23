@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache bash nano openrc mariadb-client nginx php php-fpm php-mysqli \
+RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli \
     && adduser -D -g 'www' www \
     && rm -rf /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www \
