@@ -19,6 +19,7 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine
+    command: sh -c "cd /home/alpine/www"
 
 volumes:
   mariadb: {}
