@@ -7,6 +7,8 @@ services:
     MARIADB_USER: ${MARIADB_USER}
     MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     MARIADB_DATABASE: ${MARIADB_DATABASE}
+  volumes:
+    - mariadb:/home/mariadb
   
   alpine:
     build:
@@ -18,4 +20,5 @@ services:
     volumes:
       - alpine:/home/alpine
 volumes:
+  mariadb: {}
   alpine: {}
