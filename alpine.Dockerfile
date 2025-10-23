@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache bash nano nginx \
+RUN apk update && apk add --no-cache bash nano nginx php \
     && adduser -D -g 'www' www \
     && rm -f /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www \
