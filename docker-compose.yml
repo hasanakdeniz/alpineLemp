@@ -19,7 +19,6 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine
-    command: bash -c "chown -R www:www /home/alpine/www"
 
 volumes:
   mariadb: {}
