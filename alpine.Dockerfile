@@ -10,10 +10,4 @@ RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index
 
 EXPOSE 80 443
 
-CMD sh -c "
-            chown -R www:www /var/lib/nginx 
-            && chown -R www:www /home/alpine/www 
-            && chmod -R 777 /home/alpine/www 
-            && php-fpm83 
-            && nginx -g 'daemon off;'
-"
+CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && php-fpm83 && nginx -g 'daemon off;'"
