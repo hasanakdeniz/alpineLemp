@@ -12,4 +12,4 @@ RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index
 
 EXPOSE 80 443
 
-CMD sh -c "nginx -g 'daemon off;'"
+CMD sh -c "php-fpm83 && nginx -g 'daemon off;'"
