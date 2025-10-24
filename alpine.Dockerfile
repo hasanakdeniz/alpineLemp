@@ -31,4 +31,4 @@ EXPOSE 80 443 22
 
 WORKDIR /home/alpine/www
 
-CMD sh -c "chown -R www:www /var/lib/nginx && chown -R root:root /home/alpine/www && chmod -R 777 /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
+CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
