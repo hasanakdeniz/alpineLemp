@@ -34,4 +34,4 @@ EXPOSE 80 443 22
 
 WORKDIR /home/alpine/www
 
-CMD sh -c "chmod -R 777 /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
+CMD sh -c "/usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
