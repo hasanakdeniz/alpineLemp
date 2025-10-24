@@ -11,6 +11,11 @@ RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli open
 RUN adduser -D -s /bin/bash --no-create-home ${SFTP_USER}
 RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 
+RUN chown root:root /home/alpine \
+    && chown root:root /home/alpine/www \
+    && mkdir -p /home/alpine/www/uploads \
+    && chown root:root /home/alpine/www/uploads
+
 RUN echo "Subsystem sftp /usr/lib/ssh/sftp-server" >> /etc/ssh/sshd_config \
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
