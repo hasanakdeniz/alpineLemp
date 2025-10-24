@@ -1,4 +1,6 @@
 FROM alpine:latest
+ARG SFTP_USER=SFTP_USER
+ARG SFTP_PASSWORD=SFTP_PASSWORD
 
 RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh \
     && adduser -D -g 'www' www \
