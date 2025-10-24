@@ -14,7 +14,7 @@ RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 RUN chown root:root /home/alpine \
     && chown root:root /home/alpine/www \
     && mkdir -p /home/alpine/www/uploads \
-    && chown root:root /home/alpine/www/uploads
+    && chown 1000:1000 /home/alpine/www/uploads
 
 RUN echo "Subsystem sftp /usr/lib/ssh/sftp-server" >> /etc/ssh/sshd_config \
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
