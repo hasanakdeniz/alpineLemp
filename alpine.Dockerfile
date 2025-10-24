@@ -13,6 +13,7 @@ RUN adduser -D -s /bin/bash ${SFTP_USER}
 RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 
 RUN echo "Subsystem sftp /usr/lib/ssh/sftp-server" >> /etc/ssh/sshd_config \
+    && echo "ChrootDirectory /home/alpine/www" >> /etc/ssh/sshd_config \
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
     && echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config \
