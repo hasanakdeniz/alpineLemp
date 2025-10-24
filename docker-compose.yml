@@ -16,6 +16,7 @@ services:
       dockerfile: alpine.Dockerfile
     ports:
       - 80
+      - "${SFTP_PORT}:22"
     tty: true
     volumes:
       - alpine:/home/alpine
