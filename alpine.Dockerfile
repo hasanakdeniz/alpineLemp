@@ -13,12 +13,12 @@ RUN adduser -D -s /bin/bash ${SFTP_USER}
 RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 
 RUN echo "Subsystem sftp /usr/lib/ssh/sftp-server" >> /etc/ssh/sshd_config \
-    && echo "ChrootDirectory /home/alpine/www" >> /etc/ssh/sshd_config \
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
     && echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config \
     && echo "X11Forwarding no" >> /etc/ssh/sshd_config \
-    && echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
+    && echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config \
+    && echo "ChrootDirectory /home/alpine/www" >> /etc/ssh/sshd_config
 
 RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.html index.php index.htm; location / { try_files $uri $uri/ =404; }   location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
 
