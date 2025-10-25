@@ -9,7 +9,7 @@ RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli open
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
     && ssh-keygen -A
 
-RUN adduser -D -s /bin/bash /home/alpine/www/upload ${SFTP_USER}
+RUN adduser -D -s /bin/false -h /home/alpine/www/upload ${SFTP_USER}
 RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 
 RUN echo "Subsystem sftp /usr/lib/ssh/sftp-server" >> /etc/ssh/sshd_config \
