@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh openssh-sftp-server \
+RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh openssh-sftp-server openssh-server-pam \
     && rm -rf /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
