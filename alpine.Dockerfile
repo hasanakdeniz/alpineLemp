@@ -7,10 +7,10 @@ RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli open
     && ssh-keygen -A \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config \
     && sed -i 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config \
-    && adduser -D 22 \
-    && echo "22:22" | chpasswd \
+    && adduser -D test\
+    && echo "test:test" | chpasswd \
     && sed -i '/^Subsystem sftp/c\Subsystem sftp internal-sftp' /etc/ssh/sshd_config \
-    && echo "Match User 22" >> /etc/ssh/sshd_config \
+    && echo "Match User test" >> /etc/ssh/sshd_config \
     && echo "  ChrootDirectory /home/alpine/www" >> /etc/ssh/sshd_config \
     && echo "  ForceCommand internal-sftp" >> /etc/ssh/sshd_config \
     && chown root:root /home/alpine/www \
