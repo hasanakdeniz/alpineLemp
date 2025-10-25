@@ -6,6 +6,7 @@ RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli open
     && adduser -D -g 'www' --no-create-home www \
     && rm -rf /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www \
+    && mkdir -p /home/alpine/www/upload \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
     && ssh-keygen -A
 
