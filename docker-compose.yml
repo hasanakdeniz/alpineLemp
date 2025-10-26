@@ -10,7 +10,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     networks:
-      - ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}
+      - qwee-${RANDOM}
       
   alpine:
     build:
@@ -26,12 +26,12 @@ services:
     volumes:
       - alpine:/home/alpine/www
     networks:
-      - ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}
+      - qwee-${RANDOM}
 
 volumes:
   mariadb: {}
   alpine: {}
 
 networks:
-  ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}:
+  qwee-${RANDOM}:
     driver: bridge
