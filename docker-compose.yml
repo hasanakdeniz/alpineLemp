@@ -34,5 +34,4 @@ volumes:
 
 networks:
   ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}:
-    name: ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}
     driver: bridge
