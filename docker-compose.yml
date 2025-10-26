@@ -9,6 +9,8 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
+    networks:
+      - ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}
       
   alpine:
     build:
@@ -23,7 +25,14 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
+    networks:
+      - ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}
 
 volumes:
   mariadb: {}
   alpine: {}
+
+networks:
+  ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}:
+    name: ${MARIADB_USER}-${SFTP_USER}-${SFTP_PORT}-${RANDOM}
+    external: true
