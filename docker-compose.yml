@@ -10,7 +10,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     networks:
-      - qwee-${RANDOM}
+      - test-network
       
   alpine:
     build:
@@ -26,12 +26,12 @@ services:
     volumes:
       - alpine:/home/alpine/www
     networks:
-      - qwee-${RANDOM}
+      - test-network
 
 volumes:
   mariadb: {}
   alpine: {}
 
 networks:
-  qwee-${RANDOM}:
+  test-network:
     driver: bridge
