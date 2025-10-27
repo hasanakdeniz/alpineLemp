@@ -7,7 +7,7 @@ WORKDIR /home/alpine/www
 COPY . .
 
 RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh \
-    && adduser -D -g 'www' --no-create-home www \
+    && adduser -D -g 'www' -h /home/alpine/www www \
     && rm -rf /etc/nginx/http.d/default.conf \
     && mkdir -p /home/alpine/www/upload \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
