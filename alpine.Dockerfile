@@ -2,10 +2,13 @@ FROM alpine:latest
 ARG SFTP_USER=SFTP_USER
 ARG SFTP_PASSWORD=SFTP_PASSWORD
 
+WORKDIR /home/alpine/www
+
+COPY . .
+
 RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh \
     && adduser -D -g 'www' --no-create-home www \
     && rm -rf /etc/nginx/http.d/default.conf \
-    && mkdir -p /home/alpine/www \
     && mkdir -p /home/alpine/www/upload \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
     && ssh-keygen -A
@@ -25,8 +28,4 @@ RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index
 
 EXPOSE 80 443 22
 
-WORKDIR /home/alpine/www
-
-COPY . .
-
-CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
+CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 755 /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
