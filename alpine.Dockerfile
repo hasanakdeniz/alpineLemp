@@ -4,12 +4,10 @@ ARG SFTP_PASSWORD=SFTP_PASSWORD
 
 WORKDIR /home/alpine/www
 
-COPY . .
-
 RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh \
     && rm -rf /var/cache/apk/* \
     && adduser -D -g 'www' -h /home/alpine/www www \
-    && adduser -D -s /bin/false -h /home/alpine/www/upload ${SFTP_USER} \
+    && adduser -D -s /bin/false -h /home/alpine/www ${SFTP_USER} \
     && rm -rf /etc/nginx/http.d/default.conf \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
     && ssh-keygen -A
