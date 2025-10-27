@@ -21,7 +21,6 @@ RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config \
     && echo "X11Forwarding no" >> /etc/ssh/sshd_config \
     && echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config \
-    && echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
     && echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config \
     && echo "Match User ${SFTP_USER}" >> /etc/ssh/sshd_config \
     && echo "ChrootDirectory /home/alpine/www" >> /etc/ssh/sshd_config \
