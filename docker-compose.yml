@@ -9,8 +9,6 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
-    networks:
-      - ${SFTP_USER}-${SFTP_PORT}
       
   alpine:
     build:
@@ -25,13 +23,7 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
-    networks:
-      - ${SFTP_USER}-${SFTP_PORT}
 
 volumes:
   mariadb: {}
   alpine: {}
-
-networks:
-  ${SFTP_USER}-${SFTP_PORT}:
-    driver: bridge
