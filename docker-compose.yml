@@ -25,10 +25,12 @@ services:
     volumes:
       - alpine:/home/alpine/www
     labels:
-      - traefik.http.routers.test-tee-ov74uy-20-web.rule=${DOMAINS}
       - traefik.http.routers.test-tee-ov74uy-20-web.entrypoints=websecure
+      - traefik.http.routers.test-tee-ov74uy-20-web.rule=${DOMAINS}
       - traefik.http.routers.test-tee-ov74uy-20-web.tls=true
       - traefik.http.routers.test-tee-ov74uy-20-web.tls.certresolver=le
+      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
 
 volumes:
   mariadb: {}
