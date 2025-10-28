@@ -42,4 +42,3 @@ volumes:
 networks:
   test-tee-ov74uy:
     name: test-tee-ov74uy
-    external: true
