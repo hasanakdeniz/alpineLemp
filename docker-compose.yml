@@ -30,7 +30,7 @@ services:
       - traefik_proxy
     labels:
       - traefik.enable=true
-      - traefik.docker.network=dokploy-network
+      - traefik.docker.network=traefik_proxy
       - traefik.http.services.alpine-web.loadbalancer.server.port=80
       - traefik.http.routers.alpine-https.service=alpine-web
       - traefik.http.routers.alpine-https.rule=Host(`selam.pp.ua`)
