@@ -9,8 +9,6 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
-    networks:
-      - test-tee-ov74uya
 
   alpine:
     build:
@@ -33,15 +31,8 @@ services:
       - traefik.http.routers.test-tee-ov74uya-20-web.entrypoints=websecure
       - traefik.http.routers.test-tee-ov74uya-20-web.tls=true
       - traefik.http.routers.test-tee-ov74uya-20-web.tls.certresolver=le
-      - traefik.http.services.test-tee-ov74uya-20-web.loadbalancer.server.port=80
-      - traefik.http.routers.test-tee-ov74uya-20-web.service=test-tee-ov74uya-20-web
-      - traefik.docker.network=test-tee-ov74uya
       - traefik.enable=true
 
 volumes:
   mariadb: {}
   alpine: {}
-
-networks:
-  test-tee-ov74uya:
-    name: test-tee-ov74uya
