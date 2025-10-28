@@ -42,4 +42,3 @@ volumes:
 
 networks:
   traefik_proxy:
-    external: true
