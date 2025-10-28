@@ -23,6 +23,8 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
+    networks:
+      - traefik_proxy
     labels:
       - traefik.enable=true
       - traefik.http.routers.alpine-https.rule=Host(`selam.pp.ua`, `hasanakdeniz.com`)
@@ -35,3 +37,7 @@ services:
 volumes:
   mariadb: {}
   alpine: {}
+
+networks:
+  traefik_proxy:
+    external: true
