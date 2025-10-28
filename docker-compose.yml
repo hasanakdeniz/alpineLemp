@@ -42,4 +42,4 @@ volumes:
   alpine: {}
 
 networks:
-  traefik_proxy:
+  traefik_proxy: {}
