@@ -10,7 +10,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     networks:
-      - test-network
+      - ${SFTP_USER}-${SFTP_PORT}
       
   alpine:
     build:
@@ -26,12 +26,12 @@ services:
     volumes:
       - alpine:/home/alpine/www
     networks:
-      - test-network
+      - ${SFTP_USER}-${SFTP_PORT}
 
 volumes:
   mariadb: {}
   alpine: {}
 
 networks:
-  test-network:
+  ${SFTP_USER}-${SFTP_PORT}:
     driver: bridge
