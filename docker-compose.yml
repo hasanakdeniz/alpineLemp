@@ -19,26 +19,23 @@ services:
         SFTP_PASSWORD: ${SFTP_PASSWORD}
     restart: always
     ports: 
-      - "${SFTP_PORT}:22" 
+      - 80
+      - "${SFTP_PORT}:22"
     tty: true
     volumes:
       - alpine:/home/alpine/www
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik_proxy
-      - traefik.http.services.alpine-web.loadbalancer.server.port=80
       
       - traefik.http.routers.alpine-selam.rule=Host(`selam.pp.ua`)
       - traefik.http.routers.alpine-selam.entrypoints=websecure
       - traefik.http.routers.alpine-selam.tls=true
       - traefik.http.routers.alpine-selam.tls.certresolver=le
-      - traefik.http.routers.alpine-selam.service=alpine-web
 
       - traefik.http.routers.alpine-hasan.rule=Host(`hasanakdeniz.com`)
       - traefik.http.routers.alpine-hasan.entrypoints=websecure
       - traefik.http.routers.alpine-hasan.tls=true
       - traefik.http.routers.alpine-hasan.tls.certresolver=le
-      - traefik.http.routers.alpine-hasan.service=alpine-web
 
 volumes:
   mariadb: {}
