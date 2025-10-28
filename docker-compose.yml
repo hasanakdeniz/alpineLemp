@@ -24,8 +24,6 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
-    networks:
-      - test-tee-ov74uya
     labels:
       - traefik.http.routers.test-tee-ov74uy-20-web.rule=Host(`selam.pp.ua`)
       - traefik.http.routers.test-tee-ov74uy-20-web.entrypoints=websecure
