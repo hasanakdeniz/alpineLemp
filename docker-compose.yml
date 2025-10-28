@@ -35,7 +35,7 @@ services:
       - traefik.http.routers.alpine-https.entrypoints=websecure
       - traefik.http.routers.alpine-https.tls=true
       - traefik.http.routers.alpine-https.tls.certresolver=le
-      - traefik.http.services.talpine-https.loadbalancer.server.port=80
+      - traefik.http.services.alpine-https.loadbalancer.server.port=80
       - traefik.http.routers.alpine-https.service=alpine-https
       - traefik.http.routers.alpine-https2.rule=Host(`hasanakdeniz.com`)
       - traefik.http.routers.alpine-https2.entrypoints=websecure
