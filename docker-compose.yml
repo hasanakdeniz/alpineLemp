@@ -25,13 +25,11 @@ services:
     volumes:
       - alpine:/home/alpine/www
     labels:
-      - traefik.enable=true
-      
+      - traefik.enable=true      
       - traefik.http.routers.alpine-selam.rule=Host(`selam.pp.ua`)
       - traefik.http.routers.alpine-selam.entrypoints=websecure
       - traefik.http.routers.alpine-selam.tls=true
       - traefik.http.routers.alpine-selam.tls.certresolver=le
-
       - traefik.http.routers.alpine-hasan.rule=Host(`hasanakdeniz.com`)
       - traefik.http.routers.alpine-hasan.entrypoints=websecure
       - traefik.http.routers.alpine-hasan.tls=true
