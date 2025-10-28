@@ -19,6 +19,7 @@ services:
       args:
         SFTP_USER: ${SFTP_USER}
         SFTP_PASSWORD: ${SFTP_PASSWORD}
+    restart: always
     ports:
       - 80
       - "${SFTP_PORT}:22"
