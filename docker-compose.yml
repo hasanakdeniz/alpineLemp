@@ -10,7 +10,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     networks:
-      - test-tee-ov74uy
+      - test-tee-ov74uya
 
   alpine:
     build:
@@ -27,12 +27,12 @@ services:
     volumes:
       - alpine:/home/alpine/www
     networks:
-      - test-tee-ov74uy
+      - test-tee-ov74uya
     labels:
-      - traefik.http.routers.test-tee-ov74uy-20-web.rule=Host(`selam.pp.ua`)
-      - traefik.http.routers.test-tee-ov74uy-20-web.entrypoints=web
-      - traefik.http.services.test-tee-ov74uy-20-web.loadbalancer.server.port=80
-      - traefik.http.routers.test-tee-ov74uy-20-web.service=test-tee-ov74uy-20-web
+      - traefik.http.routers.test-tee-ov74uya-20-web.rule=Host(`selam.pp.ua`)
+      - traefik.http.routers.test-tee-ov74uya-20-web.entrypoints=web
+      - traefik.http.services.test-tee-ov74uya-20-web.loadbalancer.server.port=80
+      - traefik.http.routers.test-tee-ov74uya-20-web.service=test-tee-ov74uya-20-web
       - traefik.enable=true
 
 volumes:
@@ -40,5 +40,5 @@ volumes:
   alpine: {}
 
 networks:
-  test-tee-ov74uy:
-    name: test-tee-ov74uy
+  test-tee-ov74uya:
+    name: test-tee-ov74uya
