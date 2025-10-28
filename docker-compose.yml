@@ -23,6 +23,12 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.alpine-https.rule=Host(`selam.pp.ua`)
+      - traefik.http.routers.alpine-https.entrypoints=websecure
+      - traefik.http.routers.alpine-https.tls=true
+      - traefik.http.routers.alpine-https.tls.certresolver=le
 
 volumes:
   mariadb: {}
