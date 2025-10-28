@@ -9,8 +9,6 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
-    networks:
-      - traefik_proxy
 
   alpine:
     build:
@@ -25,8 +23,6 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
-    networks:
-      - traefik_proxy
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_proxy
@@ -47,7 +43,3 @@ services:
 volumes:
   mariadb: {}
   alpine: {}
-
-networks:
-  traefik_proxy:
-    name: traefik_proxy
