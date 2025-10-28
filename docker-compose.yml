@@ -24,14 +24,10 @@ services:
     volumes:
       - alpine:/home/alpine/www
     labels:
-      - traefik.http.routers.test-alpinelemp-jan8bq-15-web.rule=Host(`test-alpinelemp-jan8bq-9e569d-152-53-200-229.traefik.me`)
+      - traefik.http.routers.test-alpinelemp-jan8bq-15-web.rule=Host('test-alpinelemp-jan8bq-9e569d-152-53-200-229.traefik.me')
       - traefik.http.routers.test-alpinelemp-jan8bq-15-web.entrypoints=web
       - traefik.http.services.test-alpinelemp-jan8bq-15-web.loadbalancer.server.port=80
       - traefik.http.routers.test-alpinelemp-jan8bq-15-web.service=test-alpinelemp-jan8bq-15-web
-      - traefik.tcp.routers.alpine-sftp.rule=HostSNI(`*`)
-      - traefik.tcp.routers.alpine-sftp.entrypoints=sftp
-      - traefik.tcp.routers.alpine-sftp.service=alpine-sftp-svc
-      - traefik.tcp.services.alpine-sftp-svc.loadbalancer.server.port=22
       - traefik.enable=true
 
 volumes:
