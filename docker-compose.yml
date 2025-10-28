@@ -34,8 +34,6 @@ services:
       - traefik.http.routers.alpine-https.entrypoints=websecure
       - traefik.http.routers.alpine-https.tls=true
       - traefik.http.routers.alpine-https.tls.certresolver=le
-      - traefik.http.services.alpine.loadbalancer.server.port=80
-      - traefik.http.routers.alpine-https.service=alpine-https
 
 volumes:
   mariadb: {}
