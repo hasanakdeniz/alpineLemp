@@ -30,7 +30,7 @@ services:
       - traefik_proxy
     labels:
       - traefik.enable=true
-      - traefik.http.routers.alpine-https.rule=Host(`selam.pp.ua`, `hasanakdeniz.com`)
+      - traefik.http.routers.alpine-https.rule=Host(`selam.pp.ua`)
       - traefik.http.routers.alpine-https.entrypoints=websecure
       - traefik.http.routers.alpine-https.tls=true
       - traefik.http.routers.alpine-https.tls.certresolver=le
