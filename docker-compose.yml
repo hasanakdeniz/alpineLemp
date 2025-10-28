@@ -9,6 +9,8 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
+    networks:
+      - traefik_proxy
       
   alpine:
     build:
