@@ -29,7 +29,6 @@ services:
       - traefik.http.routers.test-tee-ov74uy-20-web.entrypoints=websecure
       - traefik.http.routers.test-tee-ov74uy-20-web.tls=true
       - traefik.http.routers.test-tee-ov74uy-20-web.tls.certresolver=le
-      - traefik.enable=true
 
 volumes:
   mariadb: {}
