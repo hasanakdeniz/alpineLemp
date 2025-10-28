@@ -11,7 +11,7 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - traefik_proxy
-      
+
   alpine:
     build:
       context: .
@@ -20,9 +20,8 @@ services:
         SFTP_USER: ${SFTP_USER}
         SFTP_PASSWORD: ${SFTP_PASSWORD}
     restart: always
-    ports:
-      - 80
-      - "${SFTP_PORT}:22"
+    ports: 
+      - "${SFTP_PORT}:22" 
     tty: true
     volumes:
       - alpine:/home/alpine/www
@@ -32,16 +31,18 @@ services:
       - traefik.enable=true
       - traefik.docker.network=traefik_proxy
       - traefik.http.services.alpine-web.loadbalancer.server.port=80
-      - traefik.http.routers.alpine-https.service=alpine-web
-      - traefik.http.routers.alpine-https.rule=Host(`selam.pp.ua`)
-      - traefik.http.routers.alpine-https.entrypoints=websecure
-      - traefik.http.routers.alpine-https.tls=true
-      - traefik.http.routers.alpine-https.tls.certresolver=le
-      - traefik.http.routers.alpine-https2.service=alpine-web
-      - traefik.http.routers.alpine-https2.rule=Host(`hasanakdeniz.com`)
-      - traefik.http.routers.alpine-https2.entrypoints=websecure
-      - traefik.http.routers.alpine-https2.tls=true
-      - traefik.http.routers.alpine-https2.tls.certresolver=le
+      
+      - traefik.http.routers.alpine-selam.rule=Host(`selam.pp.ua`)
+      - traefik.http.routers.alpine-selam.entrypoints=websecure
+      - traefik.http.routers.alpine-selam.tls=true
+      - traefik.http.routers.alpine-selam.tls.certresolver=le
+      - traefik.http.routers.alpine-selam.service=alpine-web
+
+      - traefik.http.routers.alpine-hasan.rule=Host(`hasanakdeniz.com`)
+      - traefik.http.routers.alpine-hasan.entrypoints=websecure
+      - traefik.http.routers.alpine-hasan.tls=true
+      - traefik.http.routers.alpine-hasan.tls.certresolver=le
+      - traefik.http.routers.alpine-hasan.service=alpine-web
 
 volumes:
   mariadb: {}
