@@ -9,6 +9,8 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
+    networks:
+      - test-tee-ov74uy
 
   alpine:
     build:
@@ -24,17 +26,20 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
+    networks:
+      - test-tee-ov74uy
     labels:
-      - traefik.enable=true      
-      - traefik.http.routers.alpine-selam.rule=Host(`selam.pp.ua`)
-      - traefik.http.routers.alpine-selam.entrypoints=websecure
-      - traefik.http.routers.alpine-selam.tls=true
-      - traefik.http.routers.alpine-selam.tls.certresolver=le
-      - traefik.http.routers.alpine-hasan.rule=Host(`hasanakdeniz.com`)
-      - traefik.http.routers.alpine-hasan.entrypoints=websecure
-      - traefik.http.routers.alpine-hasan.tls=true
-      - traefik.http.routers.alpine-hasan.tls.certresolver=le
+      - traefik.http.routers.test-tee-ov74uy-20-web.rule=Host(`selam.pp.ua`)
+      - traefik.http.routers.test-tee-ov74uy-20-web.entrypoints=web
+      - traefik.http.services.test-tee-ov74uy-20-web.loadbalancer.server.port=80
+      - traefik.http.routers.test-tee-ov74uy-20-web.service=test-tee-ov74uy-20-web
+      - traefik.enable=true
 
 volumes:
   mariadb: {}
   alpine: {}
+
+networks:
+  test-tee-ov74uy:
+    name: test-tee-ov74uy
+    external: true
