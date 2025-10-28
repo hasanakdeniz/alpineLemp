@@ -27,10 +27,10 @@ services:
     networks:
       - test-tee-ov74uya
     labels:
-      - traefik.http.routers.test-tee-ov74uya-20-web.rule=Host(`selam.pp.ua`)
-      - traefik.http.routers.test-tee-ov74uya-20-web.entrypoints=websecure
-      - traefik.http.routers.test-tee-ov74uya-20-web.tls=true
-      - traefik.http.routers.test-tee-ov74uya-20-web.tls.certresolver=le
+      - traefik.http.routers.test-tee-ov74uy-20-web.rule=Host(`selam.pp.ua`)
+      - traefik.http.routers.test-tee-ov74uy-20-web.entrypoints=websecure
+      - traefik.http.routers.test-tee-ov74uy-20-web.tls=true
+      - traefik.http.routers.test-tee-ov74uy-20-web.tls.certresolver=le
       - traefik.enable=true
 
 volumes:
