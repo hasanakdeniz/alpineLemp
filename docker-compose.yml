@@ -34,5 +34,4 @@ services:
 
 volumes:
   mariadb: {}
-  alpine:
-    name: alpine-${VNAME}xd
+  alpine: {}
