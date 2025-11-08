@@ -35,4 +35,4 @@ services:
 volumes:
   mariadb: {}
   alpine:
-    name: alpine-${VNAME} 
+    name: alpine-${VNAME}xd
