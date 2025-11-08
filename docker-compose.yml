@@ -34,4 +34,5 @@ services:
 
 volumes:
   mariadb: {}
-  alpine: {}
+  alpine:
+    name: alpine-${DOMAINS} 
