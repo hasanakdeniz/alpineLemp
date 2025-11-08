@@ -34,4 +34,4 @@ services:
 
 volumes:
   mariadb: {}
-  alpine: {appName}-{volumeName}
+  alpine: {}
