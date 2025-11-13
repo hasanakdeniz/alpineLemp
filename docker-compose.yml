@@ -26,12 +26,12 @@ services:
       - alpine:/home/alpine/www
     labels:      
       - traefik.http.routers.alpine-lemp-${SFTP_USER}.rule=${DOMAIN}
-      - traefik.http.routers.alpine-lemp-${SFTP_USER}.entrypoints=websecure
-      - traefik.http.routers.alpine-lemp-${SFTP_USER}.rule=${DOMAINS}
-      - traefik.http.routers.alpine-lemp-${SFTP_USER}.tls=true
-      - traefik.http.routers.alpine-lemp-${SFTP_USER}.tls.certresolver=le
-      - traefik.http.middlewares.https-redirect-${SFTP_USER}.redirectscheme.scheme=https
-      - traefik.http.middlewares.https-redirect-${SFTP_USER}.redirectscheme.permanent=true
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.entrypoints=websecure
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.rule=${DOMAINS}
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.tls=true
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.tls.certresolver=le
+      - traefik.http.middlewares.https-redirect-${SFTP_USER}S.redirectscheme.scheme=https
+      - traefik.http.middlewares.https-redirect-${SFTP_USER}S.redirectscheme.permanent=true
 
 volumes:
   mariadb: {}
