@@ -24,7 +24,8 @@ services:
     tty: true
     volumes:
       - alpine:/home/alpine/www
-    labels:
+    labels:      
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}.rule=${DOMAIN}
       - traefik.http.routers.alpine-lemp-${SFTP_USER}.entrypoints=websecure
       - traefik.http.routers.alpine-lemp-${SFTP_USER}.rule=${DOMAINS}
       - traefik.http.routers.alpine-lemp-${SFTP_USER}.tls=true
