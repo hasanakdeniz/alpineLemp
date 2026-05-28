@@ -1,23 +1,18 @@
-# 1. Sürümü mutlaka sabitleyin
-FROM alpine:3.20
-
+FROM alpine:latest
 ARG SFTP_USER=SFTP_USER
 ARG SFTP_PASSWORD=SFTP_PASSWORD
 
 WORKDIR /home/alpine/www
 
-# 2. Klasörü önceden oluşturun ve değişken boşsa hata vermemesi için varsayılan (sftp_user) atayın
-RUN apk update && apk add --no-cache bash nano nginx php83 php83-fpm php83-mysqli openssh \
+RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh \
     && rm -rf /var/cache/apk/* \
-    && mkdir -p /home/alpine/www \
-    && addgroup -S www \
-    && adduser -D -G www -h /home/alpine/www www \
-    && adduser -D -s /bin/false -h /home/alpine/www "${SFTP_USER:-sftp_user}" \
+    && adduser -D -g 'www' -h /home/alpine/www www \
+    && adduser -D -s /bin/false -h /home/alpine/www ${SFTP_USER} \
     && rm -rf /etc/nginx/http.d/default.conf \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
     && ssh-keygen -A
 
-RUN echo "${SFTP_USER:-sftp_user}:${SFTP_PASSWORD}" | chpasswd
+RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 
 RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
