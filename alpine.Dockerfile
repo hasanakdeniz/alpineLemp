@@ -1,10 +1,9 @@
-FROM alpine:latest
+FROM alpine:3.20
 ARG SFTP_USER=SFTP_USER
 ARG SFTP_PASSWORD=SFTP_PASSWORD
 
 WORKDIR /home/alpine/www
 
-# DÜZELTME: Paket isimleri php83 yapıldı, addgroup eklendi ve -G parametresi kullanıldı.
 RUN apk update && apk add --no-cache bash nano nginx php83 php83-fpm php83-mysqli openssh \
     && rm -rf /var/cache/apk/* \
     && addgroup -S www \
