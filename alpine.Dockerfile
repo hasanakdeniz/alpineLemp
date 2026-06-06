@@ -27,4 +27,4 @@ EXPOSE 80 443 22
 
 # CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && cd /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
 
-CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && cd /home/alpine/www && /usr/sbin/sshd && nginx -g 'daemon off;'"
+CMD sh -c "nginx -g 'daemon off;'"
