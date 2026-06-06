@@ -9,6 +9,7 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
+
   alpine:
     build:
       context: .
@@ -30,6 +31,13 @@ services:
       - traefik.http.routers.alpine-${SFTP_USER}.tls=true
       - traefik.http.routers.alpine-${SFTP_USER}.tls.certresolver=le
       - traefik.http.services.alpine-${SFTP_USER}.loadbalancer.server.port=80
+    networks:
+      - proxy
+
 volumes:
   mariadb: {}
   alpine: {}
+
+networks:
+  proxy:
+    external: true
