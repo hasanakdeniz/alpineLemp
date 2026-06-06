@@ -21,8 +21,8 @@ RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config \
     && echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
 
-RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.html index.php index.htm; location / { try_files $uri $uri/ =404; }   location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
+RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.html index.php index.htm; location / { try_files $uri $uri/ /index.php?$args; }   location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
 
 EXPOSE 80 443 22
 
-CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 2775 /home/alpine/www && cd /home/alpine/www && /usr/sbin/sshd && php-fpm84 && nginx -g 'daemon off;'"
+CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && cd /home/alpine/www && /usr/sbin/sshd && php-fpm84 && nginx -g 'daemon off;'"
