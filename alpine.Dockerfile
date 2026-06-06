@@ -4,7 +4,7 @@ ARG SFTP_PASSWORD=SFTP_PASSWORD
 
 WORKDIR /home/alpine/www
 
-RUN apk update && apk add --no-cache bash nano nginx php php-fpm php-mysqli openssh \
+RUN apk update && apk add --no-cache bash nano openssh nginx php83 php83-fpm php83-mysqli php83-pdo_mysql php83-session php83-json php83-mbstring php83-curl php83-xml php83-zip \
     && rm -rf /var/cache/apk/* \
     && adduser -D -g 'www' -h /home/alpine/www www \
     && adduser -D -s /bin/false -h /home/alpine/www ${SFTP_USER} \
