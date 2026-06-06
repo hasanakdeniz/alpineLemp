@@ -32,6 +32,7 @@ services:
       - traefik.http.routers.alpine-lemp-${SFTP_USER}S.tls.certresolver=le
       - traefik.http.middlewares.https-redirect-${SFTP_USER}S.redirectscheme.scheme=https
       - traefik.http.middlewares.https-redirect-${SFTP_USER}S.redirectscheme.permanent=true
+      - traefik.http.services.alpine-lemp-${SFTP_USER}.loadbalancer.server.port=80
 
 volumes:
   mariadb: {}
