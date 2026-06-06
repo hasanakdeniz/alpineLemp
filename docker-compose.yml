@@ -1,5 +1,5 @@
 services:
-  ${MARIADB_USER}:
+  mariadb:
     image: mariadb
     restart: always
     environment:
