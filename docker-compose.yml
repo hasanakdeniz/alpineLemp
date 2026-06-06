@@ -9,6 +9,7 @@ services:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
     volumes:
       - mariadb:/var/lib/mysql
+
   alpine:
     build:
       context: .
@@ -17,17 +18,21 @@ services:
         SFTP_USER: ${SFTP_USER}
         SFTP_PASSWORD: ${SFTP_PASSWORD}
     restart: always
-    ports:
+    ports: 
       - 80
       - "${SFTP_PORT}:22"
     tty: true
     volumes:
-      - ./html:/home/alpine/www
-    networks:
-      - dokploy-network
+      - alpine:/home/alpine/www
+    labels:      
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}.rule=${DOMAIN}
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.entrypoints=websecure
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.rule=${DOMAINS}
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.tls=true
+      - traefik.http.routers.alpine-lemp-${SFTP_USER}S.tls.certresolver=le
+      - traefik.http.middlewares.https-redirect-${SFTP_USER}S.redirectscheme.scheme=https
+      - traefik.http.middlewares.https-redirect-${SFTP_USER}S.redirectscheme.permanent=true
+
 volumes:
   mariadb: {}
   alpine: {}
-networks:
-  dokploy-network:
-    external: true
