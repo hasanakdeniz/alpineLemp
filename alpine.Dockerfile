@@ -1,4 +1,5 @@
 FROM alpine:latest
+
 ARG SFTP_USER=SFTP_USER
 ARG SFTP_PASSWORD=SFTP_PASSWORD
 
@@ -10,9 +11,8 @@ RUN apk update && apk add --no-cache bash nano openssh nginx php83 php83-fpm php
     && adduser -D -s /bin/false -h /home/alpine/www ${SFTP_USER} \
     && rm -rf /etc/nginx/http.d/default.conf \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
-    && ssh-keygen -A
-
-RUN echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
+    && ssh-keygen -A \
+    && echo "${SFTP_USER}:${SFTP_PASSWORD}" | chpasswd
 
 RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
@@ -21,8 +21,20 @@ RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config \
     && echo "Subsystem sftp internal-sftp" >> /etc/ssh/sshd_config
 
-RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.html index.php index.htm; location / { try_files $uri $uri/ =404; }   location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
+RUN echo 'server { \
+    listen 80; listen [::]:80; \
+    root /home/alpine/www; \
+    index index.html index.php index.htm; \
+    location / { try_files $uri $uri/ /index.php?$args; } \
+    location /blog/ { try_files $uri $uri/ /blog/index.php?$args; } \
+    location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } \
+}' > /etc/nginx/http.d/default.conf
 
 EXPOSE 80 443 22
 
-CMD sh -c "chown -R www:www /var/lib/nginx && chown -R www:www /home/alpine/www && chmod -R 777 /home/alpine/www && cd /home/alpine/www && /usr/sbin/sshd && php-fpm83 && nginx -g 'daemon off;'"
+CMD sh -c "chown -R www:www /var/lib/nginx \
+    && chown -R ${SFTP_USER}:www /home/alpine/www \
+    && chmod -R 2775 /home/alpine/www \
+    && /usr/sbin/sshd \
+    && php-fpm83 \
+    && nginx -g 'daemon off;'"
