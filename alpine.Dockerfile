@@ -7,7 +7,7 @@ WORKDIR /home/alpine/www
 RUN apk update && apk add --no-cache bash nano nginx openssh php php-fpm php-mysqli  \
     && rm -rf /var/cache/apk/* \
     && adduser -D -g 'www' -h /home/alpine/www www \
-    && adduser -D -s /bin/false -h /home/alpine/www ${SFTP_USER} \
+    && adduser -D -s /bin/bash -h /home/alpine/www ${SFTP_USER} \
     && rm -rf /etc/nginx/http.d/default.conf \
     && echo '<?php phpinfo(); ?>' > /home/alpine/www/index.php \
     && ssh-keygen -A
