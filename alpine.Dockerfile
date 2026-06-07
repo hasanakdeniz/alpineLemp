@@ -19,7 +19,7 @@ RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config \
     && echo "X11Forwarding no" >> /etc/ssh/sshd_config \
     && echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config \
-    && echo "Subsystem sftp internal-sftp -d /home/alpine/www" >> /etc/ssh/sshd_config \
+    && echo "Subsystem sftp internal-sftp -d /home/alpine/www" >> /etc/ssh/sshd_config
 
 RUN echo 'server { listen 80; listen [::]:80; root /home/alpine/www; index index.html index.php index.htm; location / { try_files $uri $uri/ /index.php?$args; }   location ~ \.php$ { fastcgi_pass 127.0.0.1:9000; fastcgi_index index.php; include fastcgi.conf; } }' > /etc/nginx/http.d/default.conf
 
